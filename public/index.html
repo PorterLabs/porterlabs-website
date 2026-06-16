@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PorterLabs — Super Intelligence × Infinite Productivity × Domain Expertise</title>
+  <meta name="description" content="To transform how the next generation of intelligent companies are built, scaled, and evolved." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:     #07101F;
+      --navy-2:   #0D1B2E;
+      --navy-3:   #0F2040;
+      --navy-4:   #152744;
+      --cyan:     #29ABE2;
+      --cyan-2:   #3FD3F0;
+      --cyan-glow:#1B90C8;
+      --white:    #FFFFFF;
+      --white-70: rgba(255,255,255,0.70);
+      --white-40: rgba(255,255,255,0.40);
+      --white-15: rgba(255,255,255,0.08);
+      --border:   rgba(41,171,226,0.18);
+      --border-2: rgba(41,171,226,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy-2); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan-glow); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(7,16,31,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-2);
+      transition: all 0.3s ease;
+    }
+    nav.scrolled { padding: 14px 60px; background: rgba(7,16,31,0.97); }
+
+    .nav-logo {
+      display: flex; align-items: center;
+      text-decoration: none;
+    }
+    .nav-logo img { height: 52px; width: auto; border-radius: 6px; }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--white-70); font-size: 14px; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--cyan); color: var(--navy) !important;
+      padding: 9px 20px; border-radius: 6px;
+      font-weight: 600 !important; font-size: 13px !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(41,171,226,0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 90%, rgba(41,171,226,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(41,171,226,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(41,171,226,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--cyan); text-transform: uppercase;
+      margin-bottom: 32px;
+      background: rgba(41,171,226,0.06);
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--cyan);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(42px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -2px;
+      max-width: 900px;
+      margin-bottom: 28px;
+      position: relative; z-index: 1;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--cyan-2) 0%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--white-70);
+      max-width: 580px;
+      line-height: 1.65;
+      margin-bottom: 48px;
+      position: relative; z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; gap: 16px;
+      position: relative; z-index: 1;
+      flex-wrap: wrap; justify-content: center;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--cyan);
+      color: var(--navy);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700; font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 0 0 rgba(41,171,226,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(41,171,226,0.3);
+    }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--white-70);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    .btn-ghost:hover { color: var(--white); border-color: rgba(41,171,226,0.4); }
+
+    .hero-formula {
+      margin-top: 72px;
+      display: inline-flex; align-items: center; gap: 12px;
+      color: var(--white-40);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative; z-index: 1;
+    }
+    .hero-formula span { color: var(--white-70); }
+    .hero-formula .x { color: var(--cyan); font-size: 16px; }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 100px 60px; }
+
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700; letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .section-title em {
+      font-style: normal; color: var(--cyan);
+    }
+
+    .section-body {
+      font-size: 17px; color: var(--white-70);
+      line-height: 1.75; max-width: 640px;
+    }
+
+    /* ── MTP ── */
+    .mtp {
+      background: var(--navy);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .mtp-inner {
+      max-width: 100%;
+      padding: 100px 60px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .mtp-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 50% 50%, rgba(41,171,226,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .mtp-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--cyan));
+      margin: 0 auto 48px;
+    }
+    .mtp-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 28px; display: block;
+    }
+    .mtp-quote {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4.5vw, 58px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--white);
+      max-width: 860px;
+      margin: 0 auto 32px;
+    }
+    .mtp-quote em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--cyan-2) 0%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .mtp-sub {
+      font-size: 16px; color: var(--white-40);
+      font-style: italic; letter-spacing: 0.02em;
+      margin-bottom: 48px;
+    }
+    .mtp-line-bottom {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--cyan), transparent);
+      margin: 0 auto;
+    }
+
+    /* ── THESIS ── */
+    .thesis { background: var(--navy-2); }
+
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .thesis-equation {
+      background: var(--white-15);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .thesis-equation .label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 32px;
+      display: block;
+    }
+    .thesis-equation .eq {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; font-weight: 700; line-height: 1.6;
+      color: var(--white);
+    }
+    .thesis-equation .eq .cyan { color: var(--cyan); }
+    .thesis-equation .eq .op {
+      color: var(--white-40); font-size: 18px; margin: 0 4px;
+    }
+    .thesis-equation .result {
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-2);
+      font-size: 13px; color: var(--white-40);
+      font-style: italic;
+    }
+
+    /* ── SYSTEM ── */
+    .system { background: var(--navy); }
+
+    .system-flow {
+      margin-top: 60px;
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .system-node {
+      flex: 1; min-width: 140px;
+      background: var(--white-15);
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .system-node:hover {
+      background: rgba(41,171,226,0.08);
+      border-color: var(--border);
+      transform: translateY(-4px);
+    }
+    .system-node.highlight {
+      border-color: var(--border);
+      background: rgba(41,171,226,0.06);
+    }
+
+    .system-node-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(41,171,226,0.15);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--cyan);
+      margin: 0 auto 16px;
+    }
+    .system-node-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px; font-weight: 600; color: var(--white);
+      margin-bottom: 8px;
+    }
+    .system-node-desc {
+      font-size: 12px; color: var(--white-40); line-height: 1.5;
+    }
+
+    .system-arrow {
+      display: flex; align-items: center;
+      padding: 0 8px;
+      color: var(--cyan); font-size: 18px;
+      flex-shrink: 0;
+      opacity: 0.5;
+    }
+
+    .system-feedback {
+      margin-top: 24px;
+      padding: 20px 28px;
+      background: rgba(41,171,226,0.05);
+      border: 1px dashed rgba(41,171,226,0.2);
+      border-radius: 10px;
+      display: flex; align-items: center; gap: 12px;
+      font-size: 13px; color: var(--white-40);
+    }
+    .system-feedback .arrow { color: var(--cyan); }
+
+    /* ── PRINCIPLES ── */
+    .principles { background: var(--navy-2); }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .principle-card {
+      background: var(--white-15);
+      border: 1px solid var(--border-2);
+      border-radius: 14px;
+      padding: 36px 28px;
+      transition: all 0.25s ease;
+    }
+    .principle-card:hover {
+      border-color: var(--border);
+      transform: translateY(-3px);
+    }
+
+    .principle-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(41,171,226,0.12);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .principle-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px; font-weight: 600; color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .principle-body {
+      font-size: 14px; color: var(--white-40); line-height: 1.65;
+    }
+
+    /* ── COMPANIES ── */
+    .companies { background: var(--navy); }
+
+    .companies-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 56px;
+    }
+
+    .company-card {
+      background: var(--white-15);
+      border: 1px solid var(--border-2);
+      border-radius: 16px;
+      padding: 40px 36px;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .company-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .company-card:hover { border-color: var(--border); transform: translateY(-4px); }
+    .company-card:hover::before { opacity: 1; }
+
+    .company-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .badge-live { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+    .badge-building { background: rgba(41,171,226,0.12); color: var(--cyan); border: 1px solid var(--border); }
+    .badge-incubating { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+
+    .badge-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: currentColor;
+    }
+
+    .company-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px; font-weight: 700; color: var(--white);
+      margin-bottom: 8px;
+    }
+    .company-tagline {
+      font-size: 14px; color: var(--cyan); font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .company-desc {
+      font-size: 14px; color: var(--white-40); line-height: 1.65;
+    }
+
+    /* ── SELECTION ── */
+    .selection { background: var(--navy-2); }
+
+    .selection-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .selection-box {
+      border-radius: 14px;
+      padding: 36px 32px;
+    }
+    .selection-box.yes {
+      background: rgba(34,197,94,0.05);
+      border: 1px solid rgba(34,197,94,0.15);
+    }
+    .selection-box.no {
+      background: rgba(239,68,68,0.04);
+      border: 1px solid rgba(239,68,68,0.12);
+    }
+
+    .selection-box h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px; font-weight: 700;
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .selection-box.yes h3 { color: #4ade80; }
+    .selection-box.no h3 { color: #f87171; }
+
+    .selection-list {
+      list-style: none; display: flex; flex-direction: column; gap: 12px;
+    }
+    .selection-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14px; color: var(--white-70); line-height: 1.5;
+    }
+    .selection-list li::before {
+      flex-shrink: 0;
+      margin-top: 3px;
+      font-size: 12px;
+    }
+    .selection-box.yes .selection-list li::before { content: '✓'; color: #4ade80; }
+    .selection-box.no .selection-list li::before { content: '✗'; color: #f87171; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--navy);
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 80px 40px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(41,171,226,0.1) 0%, transparent 70%);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-inner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(41,171,226,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(41,171,226,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at 50% 50%, black 0%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .cta-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 20px; display: block;
+    }
+    .cta-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700; letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cta-body {
+      font-size: 16px; color: var(--white-70);
+      line-height: 1.65; margin-bottom: 40px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 60px;
+      border-top: 1px solid var(--border-2);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+
+    .footer-logo {
+      display: flex; align-items: center;
+    }
+    .footer-logo img { height: 32px; width: auto; }
+
+    .footer-copy {
+      font-size: 13px; color: var(--white-40);
+    }
+
+    .footer-links {
+      display: flex; gap: 24px; list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px; color: var(--white-40); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white-70); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── STAT ROW ── */
+    .stat-row {
+      display: flex; gap: 0;
+      margin-top: 72px;
+      border: 1px solid var(--border-2);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .stat {
+      flex: 1; padding: 40px 32px;
+      border-right: 1px solid var(--border-2);
+      text-align: center;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 42px; font-weight: 700;
+      color: var(--cyan);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 13px; color: var(--white-40); font-weight: 500;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 28px; }
+      nav.scrolled { padding: 12px 28px; }
+      .nav-links { display: none; }
+      section { padding: 72px 28px; }
+      .thesis-grid { grid-template-columns: 1fr; }
+      .principles-grid { grid-template-columns: 1fr 1fr; }
+      .companies-grid { grid-template-columns: 1fr; }
+      .selection-grid { grid-template-columns: 1fr; }
+      footer { padding: 36px 28px; }
+      .stat-row { flex-wrap: wrap; }
+      .stat { flex: 1 1 50%; border-right: none; border-bottom: 1px solid var(--border-2); }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { letter-spacing: -1.5px; }
+      .principles-grid { grid-template-columns: 1fr; }
+      .system-flow { flex-direction: column; align-items: stretch; }
+      .system-arrow { transform: rotate(90deg); align-self: center; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">
+      <img src="assets/logos/logo-horizontal.png" alt="PorterLabs" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#mtp">Mission</a></li>
+      <li><a href="#system">The System</a></li>
+      <li><a href="#principles">Principles</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#selection">Selection</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-eyebrow">Agentic Company Builder</div>
+
+    <h1>Building the <em>next generation</em> of intelligent companies.</h1>
+
+    <p class="hero-sub">
+      PorterLabs is a recursive, self-improving system that builds, scales, and evolves a portfolio of intelligent companies — compounding advantage with every cycle.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#system" class="btn-primary">
+        Explore the System
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#portfolio" class="btn-ghost">See the Portfolio</a>
+    </div>
+
+    <div class="hero-formula">
+      <span>Super Intelligence</span>
+      <span class="x">×</span>
+      <span>Infinite Productivity</span>
+      <span class="x">×</span>
+      <span>Domain Expertise</span>
+    </div>
+  </section>
+
+  <!-- ── MTP ── -->
+  <section class="mtp" id="mtp">
+    <div class="mtp-bg"></div>
+    <div class="mtp-inner">
+      <div class="mtp-line reveal"></div>
+      <span class="mtp-label reveal">Massively Transformative Purpose</span>
+      <h2 class="mtp-quote reveal">
+        To transform how the <em>next generation</em> of intelligent companies are built, scaled, and evolved.
+      </h2>
+      <p class="mtp-sub reveal">— The PorterLabs MTP</p>
+      <div class="mtp-line-bottom reveal"></div>
+    </div>
+  </section>
+
+  <!-- ── THESIS ── -->
+  <section class="thesis" id="thesis">
+    <div class="section-inner">
+      <div class="thesis-grid">
+        <div class="reveal">
+          <div class="section-label">The Thesis</div>
+          <h2 class="section-title">The advantage isn't AI.<br />It's <em>configuration</em>.</h2>
+          <p class="section-body">
+            Intelligence is becoming infrastructure. Every company will have access to the same models, the same APIs, the same tools. The question is who can configure it, apply it to real businesses, and compound that advantage across a portfolio.
+          </p>
+          <br />
+          <p class="section-body">
+            Winners won't be the ones using AI — they'll be the ones who built the system that runs on it. That is the PorterLabs edge.
+          </p>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="thesis-equation">
+            <span class="label">The Porter Equation</span>
+            <div class="eq">
+              <div><span class="cyan">Configuration</span></div>
+              <div><span class="op">×</span></div>
+              <div><span class="cyan">Application</span></div>
+              <div><span class="op">×</span></div>
+              <div><span class="cyan">Narrative</span></div>
+            </div>
+            <div class="result">
+              This is multiplicative, not additive.<br />
+              Weakness in one dimension weakens the entire system.<br />
+              Mastery across all three creates compounding advantage.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="stat-row reveal">
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Live Companies in System</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">6</div>
+          <div class="stat-label">System Layers</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Compounding Cycles</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Governing Council</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SYSTEM ── -->
+  <section class="system" id="system">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">The Architecture</div>
+        <h2 class="section-title">A recursive system that <em>never stops improving</em>.</h2>
+        <p class="section-body">
+          Every company inside PorterLabs runs through the same recursive loop — one that thinks, structures, executes, builds, deploys, measures, and improves. Automatically. Continuously. The intelligence built for one company flows to the next.
+        </p>
+      </div>
+
+      <div class="system-flow reveal" style="margin-top: 56px;">
+        <div class="system-node highlight">
+          <div class="system-node-num">1</div>
+          <div class="system-node-name">Aurelius</div>
+          <div class="system-node-desc">Strategy brain. Configures what should happen next.</div>
+        </div>
+        <div class="system-arrow">→</div>
+        <div class="system-node">
+          <div class="system-node-num">2</div>
+          <div class="system-node-name">Polaris</div>
+          <div class="system-node-desc">Company OS. Structures strategy per company.</div>
+        </div>
+        <div class="system-arrow">→</div>
+        <div class="system-node">
+          <div class="system-node-num">3</div>
+          <div class="system-node-name">Nodes</div>
+          <div class="system-node-desc">Functional execution. Marketing, Product, Growth, Finance.</div>
+        </div>
+        <div class="system-arrow">→</div>
+        <div class="system-node">
+          <div class="system-node-num">4</div>
+          <div class="system-node-name">Thundr</div>
+          <div class="system-node-desc">Product engineering. Builds when Node tasks require it.</div>
+        </div>
+        <div class="system-arrow">→</div>
+        <div class="system-node">
+          <div class="system-node-num">5</div>
+          <div class="system-node-name">Deployment</div>
+          <div class="system-node-desc">Makes systems real. Live environment layer.</div>
+        </div>
+        <div class="system-arrow">→</div>
+        <div class="system-node">
+          <div class="system-node-num">6</div>
+          <div class="system-node-name">Analytics</div>
+          <div class="system-node-desc">Measures outcomes. Feeds intelligence back to Aurelius.</div>
+        </div>
+      </div>
+
+      <div class="system-feedback reveal">
+        <span class="arrow">↩</span>
+        <span>Analytics feeds directly back to Aurelius — closing the recursive loop. Each cycle makes the system smarter than the last.</span>
+      </div>
+
+      <div style="margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div class="principle-card reveal">
+          <div class="principle-icon">🏛️</div>
+          <div class="principle-title">Areopagus — Governance</div>
+          <div class="principle-body">The governing council that sits above the system. Stu, Jack, and Stu Sr. deliberate on foundational decisions: what to build, buy, scale, or stop. The Areopagus doesn't run companies. It decides what deserves to exist.</div>
+        </div>
+        <div class="principle-card reveal reveal-delay-2">
+          <div class="principle-icon">🏗️</div>
+          <div class="principle-title">Atrium — Incubation</div>
+          <div class="principle-body">Where new businesses are built before entering the recursive system. Ideas come in through the Atrium, get structured across five required documents, and graduate to their own Polaris node when they've earned it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRINCIPLES ── -->
+  <section class="principles" id="principles">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Founding Principles</div>
+        <h2 class="section-title">The <em>why</em> before the how.</h2>
+        <p class="section-body">
+          Most companies define their operating system before they write their declaration. These principles don't change with market conditions, with the companies that enter the system, or with the technologies that power it. The OS serves the Declaration — not the other way around.
+        </p>
+      </div>
+
+      <div class="principles-grid">
+        <div class="principle-card reveal">
+          <div class="principle-icon">🔄</div>
+          <div class="principle-title">The Recursive Principle</div>
+          <div class="principle-body">A company that learns is worth more than a company that works. Every company inside PorterLabs is better for every company that came before it. The tenth inherits the intelligence of the first nine.</div>
+        </div>
+        <div class="principle-card reveal reveal-delay-1">
+          <div class="principle-icon">⚙️</div>
+          <div class="principle-title">Intelligence as Infrastructure</div>
+          <div class="principle-body">The advantage is no longer simply having AI. The advantage is knowing how to configure intelligence, apply it to real-world businesses, and shape the narrative around it.</div>
+        </div>
+        <div class="principle-card reveal reveal-delay-2">
+          <div class="principle-icon">🎯</div>
+          <div class="principle-title">The Operator's Edge</div>
+          <div class="principle-body">Most operators can't build the platform. Most builders can't operate real businesses. The combination — in one team, in one system — is rare. It's what makes PorterLabs a different category.</div>
+        </div>
+        <div class="principle-card reveal reveal-delay-3">
+          <div class="principle-icon">⚖️</div>
+          <div class="principle-title">Gravity of Judgment</div>
+          <div class="principle-body">Not every opportunity deserves pursuit. We say no more than we say yes — and we say it with conviction. The best decision wins, not the loudest argument or the most senior voice.</div>
+        </div>
+        <div class="principle-card reveal">
+          <div class="principle-icon">🛡️</div>
+          <div class="principle-title">Stewardship Standard</div>
+          <div class="principle-body">The goal is not to own a portfolio. The goal is to make every company we touch materially better than it would have been without us. That is a responsibility, not just an opportunity.</div>
+        </div>
+        <div class="principle-card reveal reveal-delay-1">
+          <div class="principle-icon">🧱</div>
+          <div class="principle-title">Discipline Creates Freedom</div>
+          <div class="principle-body">Protocols before you need them. Systems before they're urgent. Habits before you're forced to. Discipline is not rigidity — it's the structure that creates room to move decisively when it matters.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PORTFOLIO ── -->
+  <section class="companies" id="portfolio">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">The Portfolio</div>
+        <h2 class="section-title">Companies inside <em>the system</em>.</h2>
+        <p class="section-body">
+          Every company in the PorterLabs portfolio runs through the same recursive architecture. Each one makes the system smarter for the ones that follow.
+        </p>
+      </div>
+
+      <div class="companies-grid">
+        <div class="company-card reveal">
+          <div class="company-badge badge-live"><span class="badge-dot"></span> Live in System</div>
+          <div class="company-name">Clout</div>
+          <div class="company-tagline">Fan engagement platform — gamifying fandom.</div>
+          <div class="company-desc">Clout is the B2C fan engagement platform that rewards fans for showing up. Dual-currency economy (XP + Coins), pick'em games, and digital challenges. The Clout OS serves as the platform infrastructure, with Clout B2C operating as its first and flagship tenant.</div>
+        </div>
+        <div class="company-card reveal reveal-delay-2">
+          <div class="company-badge badge-live"><span class="badge-dot"></span> Live in System</div>
+          <div class="company-name">Triplebolt</div>
+          <div class="company-tagline">Product engineering — building what the system requires.</div>
+          <div class="company-desc">Triplebolt is PorterLabs' product engineering arm. It delivers the builds that Node tasks require — powering the Thundr layer of the recursive system. It also serves as the delivery partner for Clout Engineering's B2B services engagements.</div>
+        </div>
+        <div class="company-card reveal">
+          <div class="company-badge badge-incubating"><span class="badge-dot"></span> Incubating — Atrium</div>
+          <div class="company-name">Kairix</div>
+          <div class="company-tagline">Intelligent systems for healthcare — starting with referral management.</div>
+          <div class="company-desc">Kairix is building intelligent operating infrastructure for hospitals, beginning with referral management for Barrow Brain & Spine. Once the first solution ships, Kairix graduates to its own Polaris node inside the recursive system.</div>
+        </div>
+        <div class="company-card reveal reveal-delay-2">
+          <div class="company-badge badge-building"><span class="badge-dot"></span> Entering Atrium</div>
+          <div class="company-name">BarberStack</div>
+          <div class="company-tagline">Operations platform for independent barbers and shops.</div>
+          <div class="company-desc">BarberStack is the second resident of the PorterLabs Atrium — in Phase 1, building the foundation. The system-powered approach that produced Clout's infrastructure now serves a new vertical.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SELECTION ── -->
+  <section class="selection" id="selection">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Selection Criteria</div>
+        <h2 class="section-title">The <em>Areopagus filter</em>.</h2>
+        <p class="section-body">
+          Not every business deserves to enter PorterLabs. The Areopagus exists because the most consequential decisions deserve deliberation, not speed. The test is simple: <em>Can PorterLabs make this company materially better than it would be without us — and is there a real business here worth making better?</em>
+        </p>
+      </div>
+
+      <div class="selection-grid">
+        <div class="selection-box yes reveal">
+          <h3>✓ A company is a candidate when...</h3>
+          <ul class="selection-list">
+            <li>It has a real, defensible market — not a crowded commodity</li>
+            <li>PorterLabs can create a material advantage the company cannot build alone</li>
+            <li>There is a clear path to revenue within 18 months</li>
+            <li>The people running it are credible operators, not just founders</li>
+          </ul>
+        </div>
+        <div class="selection-box no reveal reveal-delay-2">
+          <h3>✗ A company is disqualified when...</h3>
+          <ul class="selection-list">
+            <li>The market is too commoditized for intelligence to create differentiation</li>
+            <li>The competitive advantage is purely capital, not system</li>
+            <li>Speed of execution alone is more valuable than quality of decisions</li>
+            <li>PorterLabs cannot meaningfully improve the outcome</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section" id="contact">
+    <div class="section-inner">
+      <div class="cta-inner reveal">
+        <span class="cta-label">Work With Us</span>
+        <h2 class="cta-title">Something worth building?</h2>
+        <p class="cta-body">
+          If you're building a company you believe deserves the PorterLabs system behind it — or you're an operator who wants to understand how the architecture works — we want to hear from you.
+        </p>
+        <a href="mailto:stu@pocolabs.ai" class="btn-primary">
+          Start the Conversation
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">
+      <img src="assets/logos/logo-horizontal.png" alt="PorterLabs" />
+    </div>
+    <p class="footer-copy">© 2026 PorterLabs · pocolabs.ai · All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#system">System</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="mailto:stu@pocolabs.ai">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
