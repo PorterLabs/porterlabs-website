@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Areopagus — PorterLabs</title>
+  <meta name="description" content="The governing council that sits above the PorterLabs system. Where foundational decisions are made with deliberation and gravity." />
+  <link rel="icon" type="image/png" href="assets/logos/logo-mark.png" />
+  <link rel="apple-touch-icon" href="assets/logos/logo-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:     #07101F;
+      --navy-2:   #0D1B2E;
+      --navy-3:   #0F2040;
+      --navy-4:   #152744;
+      --cyan:     #29ABE2;
+      --cyan-2:   #3FD3F0;
+      --cyan-glow:#1B90C8;
+      --gold:     #C9A84C;
+      --gold-2:   #E8C96A;
+      --white:    #FFFFFF;
+      --white-70: rgba(255,255,255,0.70);
+      --white-40: rgba(255,255,255,0.40);
+      --white-15: rgba(255,255,255,0.08);
+      --border:   rgba(41,171,226,0.18);
+      --border-2: rgba(41,171,226,0.08);
+      --border-gold: rgba(201,168,76,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy-2); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan-glow); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(7,16,31,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-2);
+      transition: all 0.3s ease;
+    }
+    nav.scrolled { padding: 14px 60px; background: rgba(7,16,31,0.97); }
+
+    .nav-logo {
+      display: flex; align-items: center;
+      text-decoration: none;
+    }
+    .nav-logo img { height: 52px; width: auto; border-radius: 6px; }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--white-70); font-size: 14px; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--gold-2); }
+
+    .nav-cta {
+      background: var(--cyan); color: var(--navy) !important;
+      padding: 9px 20px; border-radius: 6px;
+      font-weight: 600 !important; font-size: 13px !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 140px 40px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% -5%, rgba(201,168,76,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 100%, rgba(41,171,226,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero-emblem {
+      width: 80px; height: 80px;
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 34px;
+      margin-bottom: 36px;
+      position: relative; z-index: 1;
+      background: rgba(201,168,76,0.06);
+      animation: emblem-glow 4s ease-in-out infinite;
+    }
+    @keyframes emblem-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+      50% { box-shadow: 0 0 40px rgba(201,168,76,0.15); }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px;
+      border: 1px solid var(--border-gold);
+      border-radius: 100px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--gold-2); text-transform: uppercase;
+      margin-bottom: 32px;
+      background: rgba(201,168,76,0.06);
+      position: relative; z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -3px;
+      max-width: 860px;
+      margin-bottom: 32px;
+      position: relative; z-index: 1;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--gold-2) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--white-70);
+      max-width: 600px;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+
+    .hero-attribution {
+      font-size: 13px;
+      color: var(--white-40);
+      font-style: italic;
+      margin-bottom: 56px;
+      position: relative; z-index: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; gap: 16px;
+      position: relative; z-index: 1;
+      flex-wrap: wrap; justify-content: center;
+    }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--white-70);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    .btn-ghost:hover { color: var(--white); border-color: rgba(41,171,226,0.4); }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-hint {
+      position: absolute; bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      z-index: 1;
+      opacity: 0.4;
+      animation: fade-in 1s ease 1.5s both;
+    }
+    .scroll-hint span { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-40); }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--white-40), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(1.2); }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 100px 60px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold-2);
+      margin-bottom: 16px;
+    }
+    .section-label.cyan { color: var(--cyan); }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700; letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .section-title em { font-style: normal; color: var(--gold-2); }
+    .section-title em.cyan { color: var(--cyan); }
+
+    .section-body {
+      font-size: 17px; color: var(--white-70);
+      line-height: 1.75; max-width: 680px;
+    }
+
+    /* ── ORIGIN ── */
+    .origin {
+      background: var(--navy);
+      border-top: 1px solid var(--border-2);
+    }
+
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 60px;
+    }
+
+    .origin-quote {
+      padding: 36px 40px;
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      background: rgba(201,168,76,0.04);
+      position: relative;
+    }
+    .origin-quote::before {
+      content: '\201C';
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 80px;
+      color: var(--gold);
+      opacity: 0.3;
+      position: absolute;
+      top: -16px; left: 24px;
+      line-height: 1;
+    }
+
+    .origin-quote p {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--white-70);
+      font-style: italic;
+      padding-top: 16px;
+    }
+
+    .origin-quote cite {
+      display: block;
+      margin-top: 20px;
+      font-size: 13px;
+      font-style: normal;
+      color: var(--gold-2);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .origin-context p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--white-70);
+      margin-bottom: 20px;
+    }
+    .origin-context p:last-child { margin-bottom: 0; }
+    .origin-context strong { color: var(--white); font-weight: 600; }
+
+    /* ── WHAT IT IS ── */
+    .what-it-is {
+      background: var(--navy-2);
+      border-top: 1px solid var(--border-2);
+    }
+
+    .principle-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .principle-card {
+      padding: 32px;
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      background: var(--navy);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .principle-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-4px);
+    }
+
+    .principle-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid var(--border-gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .principle-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px; font-weight: 600;
+      margin-bottom: 12px; color: var(--white);
+    }
+
+    .principle-card p {
+      font-size: 14px; line-height: 1.7;
+      color: var(--white-70);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works {
+      background: var(--navy);
+      border-top: 1px solid var(--border-2);
+    }
+
+    .process-steps {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      left: 27px; top: 52px; bottom: 52px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--border-gold), var(--border-gold), transparent);
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border-2);
+      position: relative;
+    }
+    .process-step:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--border-gold);
+      background: rgba(201,168,76,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--gold-2);
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+
+    .step-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .step-content p {
+      font-size: 16px; line-height: 1.75;
+      color: var(--white-70);
+      max-width: 680px;
+    }
+
+    /* ── THE STANDARD ── */
+    .the-standard {
+      background: var(--navy-2);
+      border-top: 1px solid var(--border-2);
+    }
+
+    .standard-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 56px;
+    }
+
+    .standard-col {
+      padding: 36px;
+      border-radius: 12px;
+    }
+    .standard-col.pass {
+      border: 1px solid rgba(41,171,226,0.25);
+      background: rgba(41,171,226,0.04);
+    }
+    .standard-col.fail {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .standard-col-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .standard-col-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .pass .standard-col-icon { background: rgba(41,171,226,0.12); }
+    .fail .standard-col-icon { background: rgba(255,255,255,0.06); }
+
+    .standard-col-header h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px; font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .pass .standard-col-header h3 { color: var(--cyan-2); }
+    .fail .standard-col-header h3 { color: var(--white-40); }
+
+    .standard-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+
+    .standard-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 15px; line-height: 1.6;
+      color: var(--white-70);
+    }
+
+    .standard-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+    .pass .standard-list li::before { background: var(--cyan); }
+    .fail .standard-list li::before { background: rgba(255,255,255,0.2); }
+
+    /* ── WEIGHT OF DECISIONS ── */
+    .weight {
+      background: var(--navy);
+      border-top: 1px solid var(--border-2);
+    }
+
+    .decision-types {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .decision-card {
+      padding: 32px;
+      border: 1px solid var(--border-2);
+      border-radius: 12px;
+      background: var(--navy-2);
+      transition: border-color 0.3s;
+    }
+    .decision-card:hover { border-color: var(--border-gold); }
+
+    .decision-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .decision-tag.areopagus { background: rgba(201,168,76,0.12); color: var(--gold-2); border: 1px solid var(--border-gold); }
+    .decision-tag.system { background: rgba(41,171,226,0.10); color: var(--cyan-2); border: 1px solid var(--border); }
+
+    .decision-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .decision-card p {
+      font-size: 14px; line-height: 1.7;
+      color: var(--white-70);
+    }
+
+    /* ── CLOSING ── */
+    .closing {
+      background: var(--navy-2);
+      border-top: 1px solid var(--border-2);
+      text-align: center;
+    }
+
+    .closing-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .closing-mark {
+      font-size: 48px;
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .closing h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .closing h2 em { font-style: normal; color: var(--gold-2); }
+
+    .closing p {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--white-70);
+      margin-bottom: 48px;
+    }
+
+    .closing-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--cyan);
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .closing-link:hover { border-color: var(--cyan); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--border-2);
+      padding: 40px 60px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .footer-logo img { height: 36px; width: auto; border-radius: 4px; }
+    .footer-links {
+      display: flex; gap: 28px; list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px; color: var(--white-40);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white-70); }
+    .footer-copy {
+      font-size: 12px; color: var(--white-40);
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      section { padding: 72px 28px; }
+      footer { padding: 32px 24px; }
+      .origin-grid { grid-template-columns: 1fr; gap: 40px; }
+      .principle-cards { grid-template-columns: 1fr; }
+      .standard-split { grid-template-columns: 1fr; }
+      .decision-types { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .process-steps::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <a href="/" class="nav-logo">
+      <img src="assets/logos/logo-horizontal.png" alt="PorterLabs" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#system">The System</a></li>
+      <li><a href="/#portfolio">Portfolio</a></li>
+      <li><a href="/areopagus" class="active">The Areopagus</a></li>
+      <li><a href="#" class="nav-cta" onclick="this.href='mai'+'lto:'+'stu'+'@'+'poco'+'labs'+'.'+'ai'; return true;">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-emblem reveal">🏛️</div>
+    <div class="hero-eyebrow reveal reveal-delay-1">PorterLabs Governance</div>
+
+    <h1 class="reveal reveal-delay-2">The <em>Areopagus</em>.</h1>
+
+    <p class="hero-sub reveal reveal-delay-3">
+      The governing council that sits above the PorterLabs system. Not a committee. Not a board. A deliberation framework — for decisions that deserve gravity.
+    </p>
+    <p class="hero-attribution reveal reveal-delay-3">Named for the ancient Athenian council on the Hill of Ares.</p>
+
+    <div class="hero-actions reveal reveal-delay-4">
+      <a href="/#system" class="btn-ghost">← Back to the System</a>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── ORIGIN ── -->
+  <section class="origin">
+    <div class="section-inner">
+      <div class="section-label reveal">The Origin</div>
+      <h2 class="section-title reveal reveal-delay-1">Named for a reason.<br /><em>Not a metaphor.</em></h2>
+
+      <div class="origin-grid">
+        <div class="origin-quote reveal reveal-delay-2">
+          <p>
+            In ancient Athens, the Areopagus was the most revered governing council in the known world. Former chief magistrates, serving for life. They met on a rocky hill above the city — literally elevated above daily politics — and handled only the most serious matters: homicide, impiety, existential decisions.
+          </p>
+          <p style="margin-top: 16px;">
+            When the Apostle Paul stood before them in Acts 17, he chose that hill because it was where ideas of ultimate importance were weighed. Not speed. Not popularity. Weight.
+          </p>
+          <cite>— Acts 17 · Athens, Greece · ~50 AD</cite>
+        </div>
+
+        <div class="origin-context reveal reveal-delay-3">
+          <p>
+            PorterLabs borrowed the name deliberately. The Areopagus here is not a software system, a Slack channel, or a weekly meeting. It is a deliberation framework — the layer that sits <strong>outside and above</strong> the recursive PorterLabs system.
+          </p>
+          <p>
+            The system is designed to execute with precision and speed. The Areopagus is designed to do the opposite: <strong>slow down</strong> when the stakes are highest, ensure every foundational decision has been weighed from every angle, and apply the kind of judgment that can't be automated.
+          </p>
+          <p>
+            It doesn't build things. It decides what <strong>deserves</strong> to be built.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHAT IT IS ── -->
+  <section class="what-it-is">
+    <div class="section-inner">
+      <div class="section-label reveal">The Framework</div>
+      <h2 class="section-title reveal reveal-delay-1">Four qualities. <em>Non-negotiable.</em></h2>
+      <p class="section-body reveal reveal-delay-2">Every principle of the Areopagus traces back to the original — a council that lasted centuries because it stood for something that didn't change with the times.</p>
+
+      <div class="principle-cards">
+        <div class="principle-card reveal reveal-delay-1">
+          <div class="principle-icon">⬆️</div>
+          <h3>Elevated Perspective</h3>
+          <p>The council sits above the system — not inside it. It has no stake in the day-to-day operations of any single company. That distance is the point. Proximity to execution creates bias. The Areopagus operates from above it.</p>
+        </div>
+        <div class="principle-card reveal reveal-delay-2">
+          <div class="principle-icon">⚖️</div>
+          <h3>Deliberate Judgment</h3>
+          <p>Speed is an operating virtue. It is not a governance virtue. When the Areopagus convenes, the objective is not to move fast — it is to get it right. Every decision gets challenged, stress-tested, and checked against first principles before it receives a verdict.</p>
+        </div>
+        <div class="principle-card reveal reveal-delay-3">
+          <div class="principle-icon">⛰️</div>
+          <h3>Moral Weight</h3>
+          <p>The original Areopagus handled only the matters that carried the most consequence. The same filter applies here. Tactical questions belong in the system. Only decisions with lasting, structural consequences rise to the council.</p>
+        </div>
+        <div class="principle-card reveal reveal-delay-4">
+          <div class="principle-icon">🔒</div>
+          <h3>Enduring Authority</h3>
+          <p>The council's decisions are final. Not final until the next quarter — final. Decisions made by the Areopagus don't get revisited because the market shifted or the mood changed. They are reset only by a new Areopagus session.</p>
+        </div>
+        <div class="principle-card reveal reveal-delay-5">
+          <div class="principle-icon">🔇</div>
+          <h3>Above the Noise</h3>
+          <p>The hill in Athens was physically removed from the city. This one is too — conceptually. The Areopagus has no Slack thread, no standing weekly meeting, no agenda driven by whoever is loudest. It convenes when the gravity of a decision demands it.</p>
+        </div>
+        <div class="principle-card reveal reveal-delay-1">
+          <div class="principle-icon">🛡️</div>
+          <h3>The Counterweight</h3>
+          <p>The PorterLabs system is built to execute. The Areopagus is built to question. Without a counterweight to the system's bias toward action, every ambitious system eventually executes itself into a mistake it can't undo. The council is that counterweight.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how-it-works">
+    <div class="section-inner">
+      <div class="section-label reveal">The Process</div>
+      <h2 class="section-title reveal reveal-delay-1">How a decision reaches <em>the council</em>.</h2>
+      <p class="section-body reveal reveal-delay-2">The Areopagus doesn't receive ad-hoc requests. Every matter that reaches the council has already passed through a preparation protocol — ensuring the council's time is spent on judgment, not information gathering.</p>
+
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>The matter is identified as foundational</h3>
+            <p>Not every difficult decision belongs to the Areopagus. A matter qualifies when it meets the threshold: it is structural, largely irreversible, cross-company in its implications, or touches the foundational direction of PorterLabs itself. Tactical decisions — even hard ones — stay in the system.</p>
+          </div>
+        </div>
+        <div class="process-step reveal reveal-delay-1">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>A pre-session package is prepared</h3>
+            <p>Before the council convenes, a complete briefing package is assembled: the question being decided, the context and history, the options under consideration, the risks and second-order consequences of each, and a recommended path with reasoning. The council reads before it deliberates.</p>
+          </div>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>The council deliberates — not debates</h3>
+            <p>Deliberation is not debate. Debate is adversarial. Deliberation is collaborative. Each council member engages the question on its merits, stress-tests the reasoning, and surfaces what hasn't been considered. The loudest argument doesn't win. The strongest one does.</p>
+          </div>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>A verdict is issued with conviction</h3>
+            <p>The output of every Areopagus session is a decision — not a recommendation, not a framework for further discussion. A verdict. It is documented, its reasoning recorded, and it enters the operating record of PorterLabs as settled law. The system executes from there.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THE STANDARD ── -->
+  <section class="the-standard">
+    <div class="section-inner">
+      <div class="section-label reveal">The Filter</div>
+      <h2 class="section-title reveal reveal-delay-1">What the council <em>weighs</em>.</h2>
+      <p class="section-body reveal reveal-delay-2">The Areopagus applies the same filter across every category of decision. The question is always the same: does this deserve to exist inside PorterLabs — and can PorterLabs make it materially better than it would be without us?</p>
+
+      <div class="standard-split">
+        <div class="standard-col pass reveal reveal-delay-2">
+          <div class="standard-col-header">
+            <div class="standard-col-icon">✓</div>
+            <h3>Enters the system when...</h3>
+          </div>
+          <ul class="standard-list">
+            <li>There is a real, defensible market — not a crowded commodity play</li>
+            <li>PorterLabs creates a material advantage the company cannot build alone</li>
+            <li>A clear path to revenue exists within 18 months</li>
+            <li>The people running it are credible operators, not just founders with a pitch</li>
+            <li>The recursive system can make this company measurably smarter over time</li>
+            <li>The decision is aligned with the PorterLabs MTP and mission</li>
+          </ul>
+        </div>
+        <div class="standard-col fail reveal reveal-delay-3">
+          <div class="standard-col-header">
+            <div class="standard-col-icon">✗</div>
+            <h3>Disqualified when...</h3>
+          </div>
+          <ul class="standard-list">
+            <li>The market is too commoditized for intelligence to create real differentiation</li>
+            <li>The competitive advantage is purely capital — not system, not configuration</li>
+            <li>Speed of execution alone is more valuable than quality of decisions</li>
+            <li>PorterLabs cannot meaningfully improve the outcome — we'd just be funding it</li>
+            <li>The people involved require management, not leverage</li>
+            <li>The decision would compromise integrity for speed or scale</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WEIGHT OF DECISIONS ── -->
+  <section class="weight">
+    <div class="section-inner">
+      <div class="section-label reveal">Jurisdiction</div>
+      <h2 class="section-title reveal reveal-delay-1">What belongs here.<br /><em>What doesn't.</em></h2>
+      <p class="section-body reveal reveal-delay-2">The Areopagus has a clear jurisdictional line. Cross it in the wrong direction and you either burden the council with the trivial, or execute something irreversible without the gravity it required.</p>
+
+      <div class="decision-types">
+        <div class="decision-card reveal reveal-delay-1">
+          <span class="decision-tag areopagus">Areopagus</span>
+          <h3>New company entry</h3>
+          <p>Any company entering the PorterLabs portfolio goes through the Areopagus. No exceptions. Entering the system means committing the system's resources, intelligence, and reputation.</p>
+        </div>
+        <div class="decision-card reveal reveal-delay-2">
+          <span class="decision-tag areopagus">Areopagus</span>
+          <h3>Major capital allocation</h3>
+          <p>Cross-company capital moves, strategic investments, and resource commitments above the operating threshold require the council's verdict before execution.</p>
+        </div>
+        <div class="decision-card reveal reveal-delay-3">
+          <span class="decision-tag areopagus">Areopagus</span>
+          <h3>Strategic pivots</h3>
+          <p>When the direction of a company or the system itself fundamentally changes — not an iteration, but a pivot — the Areopagus determines whether that change is sanctioned.</p>
+        </div>
+        <div class="decision-card reveal reveal-delay-4">
+          <span class="decision-tag areopagus">Areopagus</span>
+          <h3>Exits and wind-downs</h3>
+          <p>Removing a company from the system is as consequential as adding one. The verdict to exit is made with the same deliberation as the verdict to enter.</p>
+        </div>
+        <div class="decision-card reveal reveal-delay-1">
+          <span class="decision-tag system">System</span>
+          <h3>Operating decisions</h3>
+          <p>How a company executes within its lane, what campaigns run, what features ship, what targets a Node pursues — these belong to the system. The Areopagus doesn't manage operations.</p>
+        </div>
+        <div class="decision-card reveal reveal-delay-2">
+          <span class="decision-tag system">System</span>
+          <h3>Performance and iteration</h3>
+          <p>Analytics, calibration, param-tuning, campaign adjustment — the recursive loop handles these automatically. They surface to the Areopagus only if they expose a structural issue.</p>
+        </div>
+        <div class="decision-card reveal reveal-delay-3">
+          <span class="decision-tag system">System</span>
+          <h3>Tactical execution</h3>
+          <p>Hiring decisions, vendor relationships, sprint priorities, launch timing — the Nodes handle these. Escalate only when a tactical matter has structural implications.</p>
+        </div>
+        <div class="decision-card reveal reveal-delay-4">
+          <span class="decision-tag system">System</span>
+          <h3>Atrium progression</h3>
+          <p>Ideas moving through the Atrium — from concept to MVP to graduation — are managed by the Atrium process. The Areopagus weighs in when a company is ready to formally enter the recursive system.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CLOSING ── -->
+  <section class="closing">
+    <div class="section-inner closing-inner">
+      <span class="closing-mark reveal">🏛️</span>
+      <h2 class="reveal reveal-delay-1">The system moves fast.<br /><em>The council moves right.</em></h2>
+      <p class="reveal reveal-delay-2">
+        PorterLabs is built on the belief that compounding advantage requires both velocity and wisdom — and that the two can coexist only if there's a clear line between where speed is a virtue and where gravity is a requirement. The Areopagus holds that line.
+      </p>
+      <a href="/#system" class="closing-link reveal reveal-delay-3">
+        ← Back to the PorterLabs System
+      </a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <a href="/" class="footer-logo"><img src="assets/logos/logo-horizontal.png" alt="PorterLabs" /></a>
+      <ul class="footer-links">
+        <li><a href="/#system">The System</a></li>
+        <li><a href="/#portfolio">Portfolio</a></li>
+        <li><a href="/areopagus">The Areopagus</a></li>
+        <li><a href="#" onclick="this.href='mai'+'lto:'+'stu'+'@'+'poco'+'labs'+'.'+'ai'; return true;">Contact</a></li>
+      </ul>
+      <span class="footer-copy">© 2026 PorterLabs. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Hero elements visible immediately
+    document.querySelectorAll('.hero .reveal').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 100);
+    });
+  </script>
+
+</body>
+</html>
