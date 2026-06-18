@@ -39,10 +39,14 @@ porterlabs-website/
 | Phase | Status | Description |
 |-------|--------|-------------|
 | P0 | ✅ Complete | Design + Build V1 |
-| P1 | 🔵 Next | Deploy to porterlabs.ai via Cloudflare Pages |
-| P2 | ⬜ Backlog | Content expansion — About, team, Areopagus teaser |
+| P1 | ✅ Complete | Deploy to pocolabs.ai via Cloudflare Pages |
+| P1.5 | ✅ Complete | Favicon (PL mark) + email obfuscation fix |
+| P2 | 🔵 Next | Content expansion — Areopagus teaser page (`/areopagus`). About/team deferred (not ready to name council publicly). |
 | P3 | ⬜ Backlog | SEO + Meta — OG tags, sitemap, Cloudflare Analytics |
-| P4 | ⬜ Backlog | Multi-page expansion — /companies, /atrium, /blog |
+| P4 | ⬜ Backlog | System deep-dives — one scroll section per layer (Aurelius → Polaris → Nodes → Thundr → Deployment → Analytics) with real examples |
+| P5 | ⬜ Backlog | Multi-page expansion — /companies, /atrium, /blog |
+| P6 | ⬜ Backlog | Mobile polish pass (Stu to flag when ready) |
+| — | 🟡 Ongoing | Domain acquisition — porterlabs.ai (currently owned, Stu reaching out) |
 
 ## Deploy
 
