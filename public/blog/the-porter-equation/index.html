@@ -295,6 +295,60 @@
       .article-wrap { padding: 110px 28px 80px; }
       footer { padding: 36px 28px; }
     }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+      background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(7,16,31,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 32px;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px; font-weight: 600;
+      color: var(--white-70); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-mobile-menu a:hover { color: var(--white); }
+    .nav-mobile-menu .nav-cta {
+      background: var(--cyan); color: var(--navy) !important;
+      padding: 14px 32px; border-radius: 8px;
+      font-size: 18px !important;
+    }
+    .nav-mobile-close {
+      position: absolute; top: 24px; right: 28px;
+      background: none; border: none;
+      color: var(--white-70); font-size: 28px; cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      section { padding: 64px 24px; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 56px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -311,8 +365,23 @@
       <li><a href="/areopagus">Areopagus</a></li>
       <li><a href="/blog" class="active">Blog</a></li>
       <li><a href="#" class="nav-cta" onclick="this.href='mai'+'lto:'+'stu'+'@'+'poco'+'labs'+'.'+'ai'; return true;">Get in Touch</a></li>
-    </ul>
-  </nav>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+  <!-- Mobile menu overlay -->
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <button class="nav-mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+    <a href="/#system" onclick="closeMobileMenu()">The System</a>
+    <a href="/companies" onclick="closeMobileMenu()">Portfolio</a>
+    <a href="/atrium" onclick="closeMobileMenu()">Atrium</a>
+    <a href="/areopagus" onclick="closeMobileMenu()">Areopagus</a>
+    <a href="/blog" onclick="closeMobileMenu()">Blog</a>
+    <a href="#" class="nav-cta" onclick="closeMobileMenu()">Get in Touch</a>
+    <a href="/#system" onclick="closeMobileMenu()">System</a>
+    <a href="/#portfolio" onclick="closeMobileMenu()">Portfolio</a>
+    <a href="#" onclick="closeMobileMenu()">Contact</a>
+  </div>
 
   <!-- ── ARTICLE ── -->
   <div class="article-wrap">
@@ -459,6 +528,23 @@
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
+  
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    function openMobileMenu() {
+      hamburger.classList.add('open');
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', openMobileMenu);
+    mobileClose.addEventListener('click', closeMobileMenu);
   </script>
 
 </body>
