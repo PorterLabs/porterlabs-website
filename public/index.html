@@ -421,8 +421,131 @@
     }
     .system-feedback .arrow { color: var(--cyan); }
 
+    /* ── LAYERS ── */
+    .layers { background: var(--navy-2); border-top: 1px solid var(--border-2); }
+
+    .layer-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-2);
+    }
+    .layer-block:last-child { border-bottom: none; }
+    .layer-block.reverse { direction: rtl; }
+    .layer-block.reverse > * { direction: ltr; }
+
+    .layer-meta {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px;
+    }
+    .layer-num {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(41,171,226,0.1);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px; font-weight: 700; color: var(--cyan);
+      flex-shrink: 0;
+    }
+    .layer-label-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cyan);
+    }
+
+    .layer-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700; letter-spacing: -1px;
+      line-height: 1.1; color: var(--white);
+      margin-bottom: 16px;
+    }
+    .layer-name em { font-style: normal; color: var(--cyan); }
+
+    .layer-body {
+      font-size: 16px; color: var(--white-70);
+      line-height: 1.75; margin-bottom: 28px;
+    }
+
+    .layer-example {
+      padding: 22px 26px;
+      background: rgba(41,171,226,0.04);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--cyan);
+      border-radius: 0 10px 10px 0;
+    }
+    .layer-example-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 10px;
+    }
+    .layer-example p {
+      font-size: 14px; color: var(--white-70); line-height: 1.65;
+    }
+    .layer-example strong { color: var(--white); }
+
+    .layer-visual {
+      background: var(--navy);
+      border: 1px solid var(--border-2);
+      border-radius: 16px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .layer-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(41,171,226,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .lv-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px; font-weight: 600;
+      color: var(--white-40); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 18px;
+    }
+
+    .lv-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-2);
+    }
+    .lv-row:last-child { border-bottom: none; }
+
+    .lv-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .lv-dot.active { background: var(--cyan); box-shadow: 0 0 6px rgba(41,171,226,0.5); }
+    .lv-dot.dim { background: rgba(41,171,226,0.25); }
+    .lv-dot.gold { background: #C9A84C; }
+
+    .lv-text { font-size: 13px; line-height: 1.6; color: var(--white-70); }
+    .lv-text strong { color: var(--white); display: block; font-size: 13px; margin-bottom: 1px; }
+    .lv-text span { font-size: 12px; color: var(--white-40); }
+
+    .lv-tag {
+      display: inline-block; padding: 1px 7px;
+      border-radius: 4px; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-left: 6px; vertical-align: middle;
+    }
+    .lv-tag.live { background: rgba(41,171,226,0.15); color: var(--cyan); }
+    .lv-tag.blocked { background: rgba(255,180,0,0.12); color: #FFB400; }
+    .lv-tag.complete { background: rgba(74,222,128,0.12); color: #4ade80; }
+
+    @media (max-width: 900px) {
+      .layer-block { grid-template-columns: 1fr; gap: 36px; }
+      .layer-block.reverse { direction: ltr; }
+    }
+
     /* ── PRINCIPLES ── */
-    .principles { background: var(--navy-2); }
+    .principles { background: var(--navy); }
 
     .principles-grid {
       display: grid;
@@ -711,6 +834,7 @@
     <ul class="nav-links">
       <li><a href="#mtp">Mission</a></li>
       <li><a href="#system">The System</a></li>
+      <li><a href="#layers">Inside the System</a></li>
       <li><a href="#principles">Principles</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#selection">Selection</a></li>
@@ -887,6 +1011,143 @@
           <div class="principle-body">Where new businesses are built before entering the recursive system. Ideas come in through the Atrium, get structured across five required documents, and graduate to their own Polaris node when they've earned it.</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── LAYER DEEP-DIVES ── -->
+  <section class="layers" id="layers">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Inside the System</div>
+        <h2 class="section-title">Six layers. <em>One recursive loop.</em></h2>
+        <p class="section-body">Every company inside PorterLabs runs through the same architecture. Here's what each layer actually does — with real examples from Clout and Triplebolt.</p>
+      </div>
+
+      <!-- 1. AURELIUS -->
+      <div class="layer-block reveal">
+        <div class="layer-copy">
+          <div class="layer-meta"><div class="layer-num">1</div><div class="layer-label-tag">Aurelius</div></div>
+          <div class="layer-name">The strategy brain.<br /><em>Configures what's next.</em></div>
+          <p class="layer-body">Aurelius runs weekly. It reads the state of every company in the portfolio — KPIs, blockers, Node outcomes, capital position — and produces a single prioritized brief that tells the system what to focus on next. Not a suggestion. A directive.</p>
+          <div class="layer-example">
+            <div class="layer-example-label">Live Example — Clout</div>
+            <p>Aurelius detected that SMOS had generated <strong>74 posts in 7 days</strong> but zero had been published. It identified X API credentials as the sole mechanical blocker and issued a directive: <strong>halt new content generation, redirect all energy to distribution execution.</strong> Polaris:Clout received the brief and restructured the week’s Node priorities accordingly.</p>
+          </div>
+        </div>
+        <div class="layer-visual">
+          <div class="lv-title">Aurelius — Week of June 15</div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>North Star Directive</strong><span>Wire X API credentials. Distribution stall at 4 weeks. One human action ends it permanently.</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Clout Priority</strong><span>Halt new SMOS generation. 74 posts queued, 0 published. Fix distribution before generating more.</span></div></div>
+          <div class="lv-row"><div class="lv-dot dim"></div><div class="lv-text"><strong>Triplebolt Priority</strong><span>Nate publishes SEO article. LinkedIn briefs advance to drafts. No new content until queue ships.</span></div></div>
+          <div class="lv-row"><div class="lv-dot dim"></div><div class="lv-text"><strong>Capital Note</strong><span>Pre-revenue mode. Highest-ROI action is zero-cost: wire credentials.</span></div></div>
+          <div class="lv-row"><div class="lv-dot gold"></div><div class="lv-text"><strong>Cuts</strong><span>No new Clout features. No SMOS rebuild. No creator pipeline until distribution is proven.</span></div></div>
+        </div>
+      </div>
+
+      <!-- 2. POLARIS -->
+      <div class="layer-block reverse reveal">
+        <div class="layer-copy">
+          <div class="layer-meta"><div class="layer-num">2</div><div class="layer-label-tag">Polaris</div></div>
+          <div class="layer-name">The company OS.<br /><em>One instance per company.</em></div>
+          <p class="layer-body">Polaris translates Aurelius directives into company-specific operating state. Each company gets its own Polaris node — a living snapshot of where the business stands: KPIs, active roadmap, Node ownership, and the week’s priorities. It’s the connective tissue between strategy and execution.</p>
+          <div class="layer-example">
+            <div class="layer-example-label">Live Example — Polaris:Clout</div>
+            <p>Polaris:Clout tracks social health, creator pipeline, challenge pack cadence, and analytics status. When Aurelius issued the distribution directive, Polaris:Clout updated the week’s roadmap — <strong>Analytics Node blocked, Marketing Node on distribution execution, Product Node on hold.</strong></p>
+          </div>
+        </div>
+        <div class="layer-visual">
+          <div class="lv-title">Polaris:Clout — Live State</div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Social Health <span class="lv-tag live">Active</span></strong><span>SMOS running 29×/week · 74 posts generated · 0 posted</span></div></div>
+          <div class="lv-row"><div class="lv-dot dim"></div><div class="lv-text"><strong>Creator Pipeline <span class="lv-tag blocked">Stalled</span></strong><span>15 creators · 0 converting · budget gate pending</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Challenge Packs <span class="lv-tag live">Running</span></strong><span>Sunday 4PM cron · performance tracking queued</span></div></div>
+          <div class="lv-row"><div class="lv-dot dim"></div><div class="lv-text"><strong>Analytics API <span class="lv-tag blocked">Blocked</span></strong><span>Railway credentials needed from dev team</span></div></div>
+          <div class="lv-row"><div class="lv-dot gold"></div><div class="lv-text"><strong>Week Priority</strong><span>Wire X API → unblock SMOS autopost → first published posts</span></div></div>
+        </div>
+      </div>
+
+      <!-- 3. NODES -->
+      <div class="layer-block reveal">
+        <div class="layer-copy">
+          <div class="layer-meta"><div class="layer-num">3</div><div class="layer-label-tag">Nodes</div></div>
+          <div class="layer-name">Functional execution.<br /><em>Where the work happens.</em></div>
+          <p class="layer-body">Nodes are the functional departments of each company — Marketing, Product, Analytics, Growth, Finance, Sales, Ops. Each one runs autonomously: generating content, reviewing budgets, running sales agents, scanning performance data. They don’t wait to be told. They execute on the operating state Polaris sets.</p>
+          <div class="layer-example">
+            <div class="layer-example-label">Live Nodes — Clout</div>
+            <p>The <strong>Marketing Node</strong> runs SMOS — generating reactive sports content daily. The <strong>Analytics Node</strong> monitors platform KPIs and surfaces weekly signals. The <strong>Sales Node</strong> runs outbound agents targeting sports organizations for Clout’s B2B white-label licensing play.</p>
+          </div>
+        </div>
+        <div class="layer-visual">
+          <div class="lv-title">Active Nodes — Clout</div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Marketing Node <span class="lv-tag live">Running</span></strong><span>SMOS: 7–10 posts/day · reactive sports content · pick’em slate weekly</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Analytics Node <span class="lv-tag live">Running</span></strong><span>Weekly KPI reports · performance signals → Polaris:Clout</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Sales Node <span class="lv-tag live">Running</span></strong><span>Outbound to sports orgs · B2B white-label pipeline · 35–40% margin model</span></div></div>
+          <div class="lv-row"><div class="lv-dot dim"></div><div class="lv-text"><strong>Finance Node <span class="lv-tag blocked">Monitoring</span></strong><span>Budget review cadence · pre-revenue mode · no deployment gate</span></div></div>
+          <div class="lv-row"><div class="lv-dot dim"></div><div class="lv-text"><strong>Growth Node <span class="lv-tag blocked">Gated</span></strong><span>Held until social distribution proven · creator pipeline ready to activate</span></div></div>
+        </div>
+      </div>
+
+      <!-- 4. THUNDR -->
+      <div class="layer-block reverse reveal">
+        <div class="layer-copy">
+          <div class="layer-meta"><div class="layer-num">4</div><div class="layer-label-tag">Thundr</div></div>
+          <div class="layer-name">Product engineering.<br /><em>Builds when the Node calls.</em></div>
+          <p class="layer-body">Thundr is conditional — it only activates when a Node task requires product engineering to move forward. It’s the build layer of the system, powered by Triplebolt. When a Node identifies something that needs to be built, Thundr scopes it, delivers it, and hands it back.</p>
+          <div class="layer-example">
+            <div class="layer-example-label">Live Example — Clout-OS</div>
+            <p>Clout’s Product Node identified the need to white-label the fan engagement platform for sports organizations. Thundr scoped and built <strong>Clout-OS</strong> — a multi-tenant platform that lets any sports org run Clout’s fan engagement infrastructure under their own brand. Clout B2C is its first and flagship tenant.</p>
+          </div>
+        </div>
+        <div class="layer-visual">
+          <div class="lv-title">Thundr — Clout-OS Build</div>
+          <div class="lv-row"><div class="lv-dot gold"></div><div class="lv-text"><strong>Trigger</strong><span>Product Node: white-label capability required for B2B expansion</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Scope</strong><span>Multi-tenant architecture · org-level branding · isolated data per tenant</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Delivered <span class="lv-tag complete">Shipped</span></strong><span>Clout-OS: full white-label fan engagement platform</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>First Tenant</strong><span>Clout B2C — flagship instance running on the platform it commissioned</span></div></div>
+          <div class="lv-row"><div class="lv-dot dim"></div><div class="lv-text"><strong>Unlocked</strong><span>B2B licensing pipeline · sports org onboarding · 35–40% margin model active</span></div></div>
+        </div>
+      </div>
+
+      <!-- 5. DEPLOYMENT -->
+      <div class="layer-block reveal">
+        <div class="layer-copy">
+          <div class="layer-meta"><div class="layer-num">5</div><div class="layer-label-tag">Deployment</div></div>
+          <div class="layer-name">The next iteration.<br /><em>Live in the world.</em></div>
+          <p class="layer-body">Deployment is the moment the system’s work becomes real. Each cycle ends with something shipped: a new version of the product, a new automation running in production, a new company entering the system. Deployment closes one loop and starts the next one.</p>
+          <div class="layer-example">
+            <div class="layer-example-label">Example — PorterLabs Cycle</div>
+            <p>Aurelius directed. Nodes executed. Thundr built. <strong>Deployment shipped Clout-OS to production</strong> — live infrastructure, real tenants, real data flowing back into the system. The next Aurelius cycle now runs on measurable outcomes instead of projections. Each deployment makes the next brief smarter.</p>
+          </div>
+        </div>
+        <div class="layer-visual">
+          <div class="lv-title">What Gets Deployed</div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Product releases</strong><span>New platform versions, feature shipments, architecture upgrades</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Automation systems</strong><span>SMOS, Reaper, AXON — intelligent agents running in production continuously</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>New companies</strong><span>Businesses graduating from Atrium enter the recursive system as live Polaris nodes</span></div></div>
+          <div class="lv-row"><div class="lv-dot dim"></div><div class="lv-text"><strong>The signal it sends</strong><span>Every deployment triggers Analytics to start measuring — closing the loop to Aurelius</span></div></div>
+        </div>
+      </div>
+
+      <!-- 6. ANALYTICS -->
+      <div class="layer-block reverse reveal">
+        <div class="layer-copy">
+          <div class="layer-meta"><div class="layer-num">6</div><div class="layer-label-tag">Analytics → Aurelius</div></div>
+          <div class="layer-name">Observe. Report.<br /><em>Start the next cycle.</em></div>
+          <p class="layer-body">Analytics agents continuously observe the state of every business — platform KPIs, content performance, sales signals, financial health. They write structured reports and send them directly back to Aurelius. That’s what closes the loop: Aurelius in cycle two is measurably smarter than cycle one.</p>
+          <div class="layer-example">
+            <div class="layer-example-label">Live Example — The Feedback Loop</div>
+            <p>Analytics detected that SMOS was generating at full capacity but publishing rate was zero. That signal went directly to Aurelius. Cycle two’s directive wasn’t “generate more content” — it was <strong>“halt generation entirely and fix the distribution pipe first.”</strong> One feedback loop. One sharper brief. The system corrected itself.</p>
+          </div>
+        </div>
+        <div class="layer-visual">
+          <div class="lv-title">Analytics → Aurelius Feed</div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Signal: SMOS</strong><span>74 posts generated · 0 published · distribution broken → directive: halt + fix</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Signal: Node Velocity</strong><span>29 marketing runs/week · analytics blocked · growth gated → resource reallocation</span></div></div>
+          <div class="lv-row"><div class="lv-dot dim"></div><div class="lv-text"><strong>Signal: Creator Pipeline</strong><span>15 in pipeline · 0 converting · root cause: no social proof yet → hold budget gate</span></div></div>
+          <div class="lv-row"><div class="lv-dot gold"></div><div class="lv-text"><strong>Result: Cycle 2</strong><span>Aurelius brief rewrote the week. Less generation. More execution. System self-corrected.</span></div></div>
+          <div class="lv-row"><div class="lv-dot active"></div><div class="lv-text"><strong>Cross-company intelligence</strong><span>Clout signals feed Triplebolt brief — operator edge applied across both companies simultaneously</span></div></div>
+        </div>
+      </div>
+
     </div>
   </section>
 
