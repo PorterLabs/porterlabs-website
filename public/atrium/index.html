@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Atrium — PorterLabs Incubation</title>
+  <meta name="description" content="Where ideas earn the right to enter the system. Not every concept deserves to be built. The Atrium is where we find out which ones do." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pocolabs.ai/atrium/" />
+  <meta property="og:title" content="The Atrium — PorterLabs Incubation" />
+  <meta property="og:description" content="Where ideas earn the right to enter the system. Not every concept deserves to be built. The Atrium is where we find out which ones do." />
+  <meta property="og:image" content="https://pocolabs.ai/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="PorterLabs" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Atrium — PorterLabs Incubation" />
+  <meta name="twitter:description" content="Where ideas earn the right to enter the system." />
+  <meta name="twitter:image" content="https://pocolabs.ai/assets/og-image.png" />
+  <link rel="icon" type="image/png" href="/assets/logos/logo-mark.png" />
+  <link rel="apple-touch-icon" href="/assets/logos/logo-mark.png" />
+  <link rel="canonical" href="https://pocolabs.ai/atrium/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #07101F; --navy-2: #0D1B2E;
+      --cyan: #29ABE2; --cyan-2: #3FD3F0; --cyan-glow: #1B90C8;
+      --gold: #C9A84C; --gold-2: #E8C96A;
+      --white: #FFFFFF;
+      --white-70: rgba(255,255,255,0.70);
+      --white-40: rgba(255,255,255,0.40);
+      --white-15: rgba(255,255,255,0.08);
+      --border: rgba(41,171,226,0.18);
+      --border-2: rgba(41,171,226,0.08);
+      --border-gold: rgba(201,168,76,0.25);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy-2); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan-glow); border-radius: 3px; }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 60px; background: rgba(7,16,31,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-2); transition: all 0.3s ease; }
+    nav.scrolled { padding: 14px 60px; background: rgba(7,16,31,0.97); }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 52px; width: auto; border-radius: 6px; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--white-70); font-size: 14px; font-weight: 500; text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--gold-2); }
+    .nav-cta { background: var(--cyan); color: var(--navy) !important; padding: 9px 20px; border-radius: 6px; font-weight: 600 !important; font-size: 13px !important; transition: opacity 0.2s !important; }
+    .nav-cta:hover { opacity: 0.85; }
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 140px 40px 100px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% -5%, rgba(201,168,76,0.10) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 50% 100%, rgba(41,171,226,0.06) 0%, transparent 50%); pointer-events: none; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%); pointer-events: none; }
+    .hero-emblem { width: 80px; height: 80px; border: 1px solid var(--border-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 34px; margin-bottom: 36px; position: relative; z-index: 1; background: rgba(201,168,76,0.06); animation: emblem-glow 4s ease-in-out infinite; }
+    @keyframes emblem-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); } 50% { box-shadow: 0 0 40px rgba(201,168,76,0.15); } }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border: 1px solid var(--border-gold); border-radius: 100px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: var(--gold-2); text-transform: uppercase; margin-bottom: 32px; background: rgba(201,168,76,0.06); position: relative; z-index: 1; }
+    .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(52px, 8vw, 108px); font-weight: 700; line-height: 1.0; letter-spacing: -3px; max-width: 760px; margin-bottom: 32px; position: relative; z-index: 1; }
+    .hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--gold-2) 0%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: clamp(16px, 2vw, 19px); color: var(--white-70); max-width: 600px; line-height: 1.75; margin-bottom: 56px; position: relative; z-index: 1; }
+    .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 1; opacity: 0.4; animation: fade-in 1s ease 1.5s both; }
+    .scroll-hint span { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-40); }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--white-40), transparent); animation: scroll-pulse 2s ease-in-out infinite; }
+    @keyframes scroll-pulse { 0%, 100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 0.8; transform: scaleY(1.2); } }
+    @keyframes fade-in { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 0.4; transform: translateX(-50%) translateY(0); } }
+    /* SECTIONS */
+    section { padding: 100px 60px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 16px; }
+    .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 4vw, 52px); font-weight: 700; letter-spacing: -1px; line-height: 1.1; margin-bottom: 20px; }
+    .section-title em { font-style: normal; background: linear-gradient(135deg, var(--gold-2) 0%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-body { font-size: 17px; color: var(--white-70); line-height: 1.75; max-width: 640px; }
+    /* WHAT ATRIUM */
+    .what-atrium { background: var(--navy-2); border-top: 1px solid var(--border-2); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .what-copy p { font-size: 16px; color: var(--white-70); line-height: 1.8; margin-bottom: 22px; }
+    .what-copy p:last-child { margin-bottom: 0; }
+    .what-copy strong { color: var(--white); }
+    /* FLOW VISUAL */
+    .flow-visual { background: var(--navy); border: 1px solid var(--border-gold); border-radius: 16px; padding: 36px 32px; position: relative; overflow: hidden; }
+    .flow-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; }
+    .flow-title { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 28px; }
+    .flow-steps { display: flex; flex-direction: column; }
+    .flow-step { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-icon { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; border: 1px solid var(--border-gold); background: rgba(201,168,76,0.08); }
+    .flow-icon.cyan-icon { background: rgba(41,171,226,0.10); border-color: var(--border); }
+    .flow-step-text strong { display: block; font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+    .flow-step-text span { font-size: 12px; color: var(--white-40); line-height: 1.4; }
+    .flow-connector { width: 1px; height: 10px; background: linear-gradient(to bottom, var(--border-gold), rgba(201,168,76,0.08)); margin-left: 18px; }
+    .flow-connector.to-cyan { background: linear-gradient(to bottom, var(--border-gold), rgba(41,171,226,0.25)); }
+    /* BUILD PROTOCOL */
+    .build-protocol { background: var(--navy); }
+    .phases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; margin-top: 56px; }
+    .phase-block { border-radius: 16px; overflow: hidden; border: 1px solid var(--border-gold); }
+    .phase-block.phase-2 { border-color: var(--border); }
+    .phase-header { padding: 24px 32px; background: rgba(201,168,76,0.07); border-bottom: 1px solid var(--border-gold); }
+    .phase-block.phase-2 .phase-header { background: rgba(41,171,226,0.06); border-bottom-color: var(--border); }
+    .phase-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 8px; }
+    .phase-block.phase-2 .phase-badge { color: var(--cyan); }
+    .phase-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .phase-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .phase-sub { font-size: 13px; color: var(--white-40); }
+    .phase-docs { padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; background: rgba(255,255,255,0.015); }
+    .doc-item { display: flex; gap: 14px; align-items: flex-start; }
+    .doc-num { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; background: rgba(201,168,76,0.10); border: 1px solid var(--border-gold); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--gold-2); margin-top: 2px; }
+    .phase-block.phase-2 .doc-num { background: rgba(41,171,226,0.08); border-color: var(--border); color: var(--cyan); }
+    .doc-body strong { display: block; font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+    .doc-body p { font-size: 12px; color: var(--white-40); line-height: 1.6; }
+    .phase-gate { padding: 16px 32px; border-top: 1px solid var(--border-gold); background: rgba(201,168,76,0.04); display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: var(--gold); line-height: 1.5; }
+    .phase-block.phase-2 .phase-gate { border-top-color: var(--border); background: rgba(41,171,226,0.03); color: var(--cyan); }
+    .phase-gate-icon { font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+    .tech-stack-row { margin-top: 40px; padding: 22px 32px; border: 1px solid var(--border-2); border-radius: 12px; background: rgba(255,255,255,0.015); display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .tech-stack-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-40); flex-shrink: 0; }
+    .tech-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tech-chip { padding: 5px 14px; border-radius: 6px; background: rgba(41,171,226,0.08); border: 1px solid var(--border); font-size: 13px; font-weight: 600; color: var(--cyan); }
+    /* RESIDENTS */
+    .residents { background: var(--navy-2); border-top: 1px solid var(--border-2); }
+    .residents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 56px; }
+    .resident-card { background: var(--navy); border: 1px solid var(--border-gold); border-radius: 16px; padding: 40px 36px; position: relative; overflow: hidden; transition: all 0.25s ease; }
+    .resident-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.6; }
+    .resident-card.entering { border-color: rgba(255,255,255,0.10); }
+    .resident-card.entering::before { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); opacity: 0.4; }
+    .resident-card:hover { transform: translateY(-4px); }
+    .resident-card:hover:not(.entering) { border-color: rgba(201,168,76,0.45); }
+    .resident-card.entering:hover { border-color: rgba(255,255,255,0.2); }
+    .resident-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .badge-incubating { background: rgba(201,168,76,0.12); color: var(--gold-2); border: 1px solid var(--border-gold); }
+    .badge-entering { background: rgba(255,255,255,0.06); color: var(--white-70); border: 1px solid rgba(255,255,255,0.12); }
+    .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .badge-dot.pulse { animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .resident-name { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .resident-tagline { font-size: 14px; color: var(--gold); font-weight: 500; margin-bottom: 16px; }
+    .resident-card.entering .resident-tagline { color: var(--white-40); }
+    .resident-desc { font-size: 14px; color: var(--white-40); line-height: 1.7; margin-bottom: 24px; }
+    .resident-status { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px; background: rgba(201,168,76,0.06); border: 1px solid var(--border-gold); font-size: 12px; color: var(--gold-2); font-weight: 500; }
+    .resident-card.entering .resident-status { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.08); color: var(--white-40); }
+    .resident-status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-2); animation: pulse-dot 2s ease-in-out infinite; flex-shrink: 0; }
+    .resident-card.entering .resident-status-dot { background: var(--white-40); animation: none; }
+    /* GRADUATION */
+    .graduation { background: var(--navy); }
+    .graduation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .graduation-copy p { font-size: 16px; color: var(--white-70); line-height: 1.8; margin-bottom: 22px; }
+    .graduation-copy p:last-child { margin-bottom: 0; }
+    .graduation-copy strong { color: var(--white); }
+    .graduation-criteria { background: var(--navy-2); border: 1px solid var(--border-gold); border-radius: 16px; overflow: hidden; }
+    .gc-header { padding: 22px 28px; background: rgba(201,168,76,0.07); border-bottom: 1px solid var(--border-gold); }
+    .gc-header-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 4px; }
+    .gc-header-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); }
+    .gc-list { padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
+    .gc-item { display: flex; align-items: flex-start; gap: 14px; }
+    .gc-check { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; background: rgba(201,168,76,0.10); border: 1px solid var(--border-gold); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gold-2); font-weight: 700; margin-top: 1px; }
+    .gc-item-text strong { display: block; font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+    .gc-item-text span { font-size: 12px; color: var(--white-40); line-height: 1.5; }
+    .system-loop { margin-top: 32px; padding: 18px 24px; border: 1px dashed rgba(41,171,226,0.2); border-radius: 10px; background: rgba(41,171,226,0.03); font-size: 13px; color: var(--white-40); line-height: 1.65; }
+    .system-loop-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; display: block; }
+    .system-loop-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .sl-node { padding: 3px 10px; border-radius: 4px; background: rgba(41,171,226,0.10); border: 1px solid var(--border); color: var(--cyan); font-weight: 600; font-size: 12px; }
+    .sl-arrow { color: var(--white-40); font-size: 12px; }
+    /* CLOSING */
+    .closing { background: var(--navy-2); border-top: 1px solid var(--border-2); text-align: center; }
+    .closing-inner { max-width: 700px; margin: 0 auto; padding: 80px 40px; border: 1px solid var(--border-gold); border-radius: 24px; background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(201,168,76,0.07) 0%, transparent 70%); position: relative; overflow: hidden; }
+    .closing-inner::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse at 50% 50%, black 0%, transparent 80%); pointer-events: none; }
+    .closing-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 20px; display: block; position: relative; z-index: 1; }
+    .closing-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 3.5vw, 40px); font-weight: 700; letter-spacing: -1px; line-height: 1.2; margin-bottom: 20px; position: relative; z-index: 1; }
+    .closing-body { font-size: 16px; color: var(--white-70); line-height: 1.7; margin-bottom: 36px; position: relative; z-index: 1; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--gold-2); padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--border-gold); transition: all 0.2s ease; position: relative; z-index: 1; }
+    .btn-gold:hover { background: rgba(201,168,76,0.10); border-color: rgba(201,168,76,0.45); }
+    /* FOOTER */
+    footer { padding: 48px 60px; border-top: 1px solid var(--border-2); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { display: flex; align-items: center; }
+    .footer-logo img { height: 32px; width: auto; }
+    .footer-copy { font-size: 13px; color: var(--white-40); }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 13px; color: var(--white-40); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white-70); }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 28px; }
+      nav.scrolled { padding: 12px 28px; }
+      .nav-links { display: none; }
+      section { padding: 72px 28px; }
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .phases-grid { grid-template-columns: 1fr; }
+      .residents-grid { grid-template-columns: 1fr; }
+      .graduation-grid { grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 36px 28px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="/" class="nav-logo">
+      <img src="/assets/logos/logo-horizontal.png" alt="PorterLabs" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#system">The System</a></li>
+      <li><a href="/companies">Portfolio</a></li>
+      <li><a href="/atrium" class="active">Atrium</a></li>
+      <li><a href="/areopagus">Areopagus</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="#" class="nav-cta" onclick="this.href='mai'+'lto:'+'stu'+'@'+'poco'+'labs'+'.'+'ai'; return true;">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-emblem reveal">🏗️</div>
+
+    <div class="hero-eyebrow reveal">PorterLabs Incubation</div>
+
+    <h1 class="reveal"><em>The Atrium.</em></h1>
+
+    <p class="hero-sub reveal">
+      Where ideas earn the right to enter the system. Not every concept deserves to be built. The Atrium is where we find out which ones do.
+    </p>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- WHAT IS THE ATRIUM -->
+  <section class="what-atrium">
+    <div class="section-inner">
+      <div class="two-col">
+        <div class="reveal">
+          <div class="section-label">What It Is</div>
+          <h2 class="section-title">An anteroom<br />with strict standards.</h2>
+
+          <div class="what-copy">
+            <p>The Atrium is the incubation arm of PorterLabs — the welcoming entry point where new business ideas are <strong>structured, validated, and built into MVPs</strong> before earning a place in the recursive system. It is not an accelerator. It is not a pitch competition. It is a workshop with protocols.</p>
+
+            <p>Ideas don't enter PorterLabs directly. <strong>They enter the Atrium.</strong> The Atrium is where the work of proving an idea happens — where the thinking that should precede every build actually gets done before a single line of code is written.</p>
+
+            <p>The Atrium has strict protocols. <strong>Six required documents in Phase 1.</strong> Three more in Phase 2. No code is written until Phase 1 is reviewed and approved. No exceptions.</p>
+
+            <p>If a company earns it — if the documents hold up, if the logic survives scrutiny, if the market is real and the plan is credible — it graduates to <strong>its own Polaris node</strong> in the PorterLabs recursive system. It enters a machine that was already running before it arrived.</p>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="flow-visual">
+            <div class="flow-title">The Atrium Pipeline</div>
+            <div class="flow-steps">
+              <div class="flow-step">
+                <div class="flow-icon">💡</div>
+                <div class="flow-step-text">
+                  <strong>Idea</strong>
+                  <span>Concept surfaces — Areopagus decides it's worth exploring</span>
+                </div>
+              </div>
+              <div class="flow-connector"></div>
+              <div class="flow-step">
+                <div class="flow-icon">🏗️</div>
+                <div class="flow-step-text">
+                  <strong>Enters the Atrium</strong>
+                  <span>Company gets a name, a resident slot, and Phase 1 kicks off</span>
+                </div>
+              </div>
+              <div class="flow-connector"></div>
+              <div class="flow-step">
+                <div class="flow-icon">📋</div>
+                <div class="flow-step-text">
+                  <strong>Phase 1 — Foundation</strong>
+                  <span>Six documents: PRD, Research, Financials, Brand, TAD, Pre-Mortem</span>
+                </div>
+              </div>
+              <div class="flow-connector"></div>
+              <div class="flow-step">
+                <div class="flow-icon">✅</div>
+                <div class="flow-step-text">
+                  <strong>Phase 1 Approval Gate</strong>
+                  <span>Stu reviews all six documents. Approved before Phase 2 begins.</span>
+                </div>
+              </div>
+              <div class="flow-connector"></div>
+              <div class="flow-step">
+                <div class="flow-icon">🔨</div>
+                <div class="flow-step-text">
+                  <strong>Phase 2 — Build</strong>
+                  <span>Three more documents + code. Roadmap, prompts, GTM.</span>
+                </div>
+              </div>
+              <div class="flow-connector to-cyan"></div>
+              <div class="flow-step">
+                <div class="flow-icon cyan-icon">🚀</div>
+                <div class="flow-step-text">
+                  <strong>Graduate → Polaris Node</strong>
+                  <span>Real traction. Company enters the recursive system.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILD PROTOCOL -->
+  <section class="build-protocol">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">The Build Protocol</div>
+        <h2 class="section-title">Documentation first.<br />Code second. Always.</h2>
+        <p class="section-body">
+          The Atrium operates on a two-phase protocol. Phase 1 is documentation: six required documents that prove the idea is worth building. Phase 2 is execution: three more documents and then code. No phase can begin until the previous one is approved.
+        </p>
+      </div>
+
+      <div class="phases-grid">
+
+        <!-- PHASE 1 -->
+        <div class="phase-block reveal">
+          <div class="phase-header">
+            <div class="phase-badge">Phase 1</div>
+            <div class="phase-title">Foundation</div>
+            <div class="phase-sub">6 documents · Stu approves all before Phase 2 begins</div>
+          </div>
+          <div class="phase-docs">
+
+            <div class="doc-item">
+              <div class="doc-num">1</div>
+              <div class="doc-body">
+                <strong>PRD — Product Requirements Document</strong>
+                <p>What it is, why it exists, who it's for. Core features, user flows, success metrics. The definitive spec before a line of code.</p>
+              </div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-num">2</div>
+              <div class="doc-body">
+                <strong>Research</strong>
+                <p>Market size and structure, competitive landscape, positioning, and customer discovery. No assumptions — only evidence.</p>
+              </div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-num">3</div>
+              <div class="doc-body">
+                <strong>Financials</strong>
+                <p>Revenue model, unit economics, break-even analysis. The business case in numbers, not slides.</p>
+              </div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-num">4</div>
+              <div class="doc-body">
+                <strong>Brand</strong>
+                <p>Name, tagline, voice, visual direction. The identity that will carry the company through its first chapter.</p>
+              </div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-num">5</div>
+              <div class="doc-body">
+                <strong>TAD — Technical Architecture Document</strong>
+                <p>Data models, API contracts, auth strategy, tech stack with rationale, and MVP boundaries. Engineering clarity before the first sprint.</p>
+              </div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-num">6</div>
+              <div class="doc-body">
+                <strong>Pre-Mortem</strong>
+                <p>Written last. Assume 90-day failure: identify the 3 likeliest failure modes, the earliest detectable signal for each, and the cheap insurance against each. Defines kill/pause triggers before emotions are involved.</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="phase-gate">
+            <div class="phase-gate-icon">🔐</div>
+            <span>All six documents reviewed and approved by Stu before Phase 2 begins. No exceptions.</span>
+          </div>
+        </div>
+
+        <!-- PHASE 2 -->
+        <div class="phase-block phase-2 reveal reveal-delay-2">
+          <div class="phase-header">
+            <div class="phase-badge">Phase 2</div>
+            <div class="phase-title">Build</div>
+            <div class="phase-sub">3 documents + code · Executes after Phase 1 approval</div>
+          </div>
+          <div class="phase-docs">
+
+            <div class="doc-item">
+              <div class="doc-num">7</div>
+              <div class="doc-body">
+                <strong>Build Roadmap</strong>
+                <p>Development phases with milestones, a Deferred-Feature Ledger capturing what's intentionally excluded from MVP, and a Hardening Gate checklist before any public launch.</p>
+              </div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-num">8</div>
+              <div class="doc-body">
+                <strong>Claude Code Prompt Package</strong>
+                <p>Pre-written, structured prompts for each build phase. The instruction set that powers AI-assisted development — so the build is consistent, repeatable, and transferable.</p>
+              </div>
+            </div>
+
+            <div class="doc-item">
+              <div class="doc-num">9</div>
+              <div class="doc-body">
+                <strong>GTM Roadmap</strong>
+                <p>Path to first revenue: channels, positioning, milestones, and activation sequence. Built before launch, not after. The go-to-market plan that Phase 1 research earns.</p>
+              </div>
+            </div>
+
+            <div class="doc-item" style="margin-top: 8px; padding-top: 18px; border-top: 1px solid rgba(41,171,226,0.1);">
+              <div class="doc-num" style="background: rgba(41,171,226,0.12); border-color: rgba(41,171,226,0.3);">→</div>
+              <div class="doc-body">
+                <strong>Code</strong>
+                <p>Build begins after all three Phase 2 documents exist. Not before. The prompt package guides the development — structured, deliberate, aligned to the approved spec.</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="phase-gate">
+            <div class="phase-gate-icon">🚀</div>
+            <span>Phase 2 completion + real traction triggers graduation to a Polaris node in the recursive system.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tech-stack-row reveal">
+        <div class="tech-stack-label">Default Tech Stack</div>
+        <div class="tech-chips">
+          <span class="tech-chip">Next.js</span>
+          <span class="tech-chip">Supabase</span>
+          <span class="tech-chip">Vercel</span>
+          <span class="tech-chip">Stripe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENT RESIDENTS -->
+  <section class="residents">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Current Residents</div>
+        <h2 class="section-title">Two companies.<br />Two phases.</h2>
+        <p class="section-body">
+          The Atrium currently holds two residents. Both entered through the Areopagus. Both are working the protocol. Neither has graduated yet — because graduation has to be earned.
+        </p>
+      </div>
+
+      <div class="residents-grid">
+
+        <!-- KAIRIX -->
+        <div class="resident-card reveal">
+          <div class="resident-badge badge-incubating">
+            <span class="badge-dot pulse"></span>
+            Incubating
+          </div>
+          <div class="resident-name">Kairix</div>
+          <div class="resident-tagline">Intelligent systems for healthcare.</div>
+          <div class="resident-desc">
+            Kairix is building intelligent operating infrastructure for hospitals, beginning with a referral management system for Barrow Brain &amp; Spine. Triplebolt is building. The first solution is in active development under the Atrium protocol.
+          </div>
+          <div class="resident-status">
+            <div class="resident-status-dot"></div>
+            Active in Atrium — Phase 1 solution in development. Graduation trigger: first solution ships.
+          </div>
+        </div>
+
+        <!-- BARBERSTACK -->
+        <div class="resident-card entering reveal reveal-delay-2">
+          <div class="resident-badge badge-entering">
+            <span class="badge-dot"></span>
+            Entering Atrium
+          </div>
+          <div class="resident-name">BarberStack</div>
+          <div class="resident-tagline">Operations platform for independent barbers and shops.</div>
+          <div class="resident-desc">
+            BarberStack is building an operations platform for independent barbers and barbershops — a vertical that is underserved by existing tools and well-suited to the PorterLabs system. Phase 1 documentation is in progress. No code has been written yet. That is by design.
+          </div>
+          <div class="resident-status">
+            <div class="resident-status-dot"></div>
+            Phase 1 — Documentation in progress. Code starts after Phase 1 approval.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GRADUATION -->
+  <section class="graduation">
+    <div class="section-inner">
+      <div class="graduation-grid">
+
+        <div class="graduation-copy reveal">
+          <div class="section-label">Graduation</div>
+          <h2 class="section-title">What it means to exit.</h2>
+
+          <p>When a company exits the Atrium, it doesn't just launch a product — <strong>it enters a system that was already running before it arrived.</strong> It inherits the intelligence of every company that came before it.</p>
+
+          <p>It gets its own <strong>Polaris node.</strong> It runs the full recursive loop: Aurelius → Polaris → Nodes → Thundr → Deployment → Analytics → Aurelius. The intelligence built for Clout flows to the next company. The lessons from Kairix flow to BarberStack. The system compounds.</p>
+
+          <p>The Atrium is the beginning. The system is what comes after. <strong>Graduation is not the goal — it's the threshold.</strong> What matters is what the company does with the system once it's inside.</p>
+
+          <div class="system-loop">
+            <span class="system-loop-label">The Recursive Loop — Post-Graduation</span>
+            <div class="system-loop-chain">
+              <span class="sl-node">Aurelius</span>
+              <span class="sl-arrow">→</span>
+              <span class="sl-node">Polaris</span>
+              <span class="sl-arrow">→</span>
+              <span class="sl-node">Nodes</span>
+              <span class="sl-arrow">→</span>
+              <span class="sl-node">Thundr</span>
+              <span class="sl-arrow">→</span>
+              <span class="sl-node">Deployment</span>
+              <span class="sl-arrow">→</span>
+              <span class="sl-node">Analytics</span>
+              <span class="sl-arrow">↩</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="graduation-criteria">
+            <div class="gc-header">
+              <div class="gc-header-label">Graduation Criteria</div>
+              <div class="gc-header-title">What earns a Polaris node</div>
+            </div>
+            <div class="gc-list">
+
+              <div class="gc-item">
+                <div class="gc-check">✓</div>
+                <div class="gc-item-text">
+                  <strong>Real traction threshold</strong>
+                  <span>Measurable evidence that the market exists and the product works. Not projections — proof.</span>
+                </div>
+              </div>
+
+              <div class="gc-item">
+                <div class="gc-check">✓</div>
+                <div class="gc-item-text">
+                  <strong>Phase 1 + Phase 2 complete</strong>
+                  <span>All nine documents exist, are approved, and the MVP has shipped from Phase 2 protocol.</span>
+                </div>
+              </div>
+
+              <div class="gc-item">
+                <div class="gc-check">✓</div>
+                <div class="gc-item-text">
+                  <strong>Polaris node provisioned</strong>
+                  <span>The company gets its own instance of the PorterLabs operating system. KPIs, roadmap, Node ownership — all live.</span>
+                </div>
+              </div>
+
+              <div class="gc-item">
+                <div class="gc-check">✓</div>
+                <div class="gc-item-text">
+                  <strong>First analytics cycle running</strong>
+                  <span>Analytics agents are live, measuring outcomes, and feeding signals back to Aurelius. The loop is closed.</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING — NO APPLY CTA -->
+  <section class="closing">
+    <div class="section-inner">
+      <div class="closing-inner reveal">
+        <span class="closing-label">Entry</span>
+        <h2 class="closing-title">There is no application.</h2>
+        <p class="closing-body">
+          The Atrium doesn't have an open application. Companies enter when the Areopagus decides they're ready. The council deliberates. A decision is made. That's the standard — and it isn't changing.
+        </p>
+        <a href="/areopagus" class="btn-gold">
+          Learn how the Areopagus works
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <img src="/assets/logos/logo-horizontal.png" alt="PorterLabs" />
+    </div>
+    <p class="footer-copy">© 2026 PorterLabs · pocolabs.ai · All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="/#system">System</a></li>
+      <li><a href="/#portfolio">Portfolio</a></li>
+      <li><a href="/areopagus">Areopagus</a></li>
+      <li><a href="#" onclick="this.href='mai'+'lto:'+'stu'+'@'+'poco'+'labs'+'.'+'ai'; return true;">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.10 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "PASTE_CF_ANALYTICS_TOKEN_HERE"}'></script>
+
+</body>
+</html>
